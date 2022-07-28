@@ -14,8 +14,8 @@ app.use(express.json());
 app.use(express.static('public'));
 
 // ## TO DO - Link up routes 
-app.use('/', htmlRoutes);
 app.use('/api', apiRoutes);
+app.use('/', htmlRoutes);
 
 //specifies the port on which we want our app to listen
 
