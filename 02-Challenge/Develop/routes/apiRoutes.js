@@ -6,11 +6,13 @@ const { readFromFile, readAndAppend, writeToFile,} = require('../helper/utils');
 
 // Read db.json file and show all saved notes 
 apiRoutes.get('/', (req, res) =>
-  readFromFile('./db.json').then((data) => res.json(JSON.parse(data)))
+  readFromFile('db/db.json').then((data) => 
+  res.json(JSON.parse(data)))
 );
 
 apiRoutes.get('/notes', (req, res) =>
-  readFromFile('./db.json').then((data) => res.json(JSON.parse(data)))
+  readFromFile('db/db.json').then((data) => 
+  res.json(JSON.parse(data)))
 );
 
 
@@ -25,7 +27,7 @@ apiRoutes.post("/notes", (req,res) =>{
       note_id: uuidv4(),
     };
 
-    readAndAppend(newNote, 'db/db.json.json');
+    readAndAppend(newNote, 'db/db.json');
     res.json(`Note added successfully 🚀`);
   } else {
     res.error('Error in adding note');
@@ -35,7 +37,7 @@ apiRoutes.post("/notes", (req,res) =>{
  
 apiRoutes.delete('/notes/:id', (req, res) => {
   const notesId = req.params.notes_id;
-  readFromFile('db/db.json.json')
+  readFromFile('db/db.json')
     .then((data) => JSON.parse(data))
     .then((json) => {
       const result = json.filter((note) => note.notes_id !== notesId);
