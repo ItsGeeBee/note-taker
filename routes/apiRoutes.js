@@ -19,12 +19,12 @@ apiRoutes.get('/notes', (req, res) =>
 // ## To Do - app.post
 apiRoutes.post("/notes", (req,res) =>{
 
-  const {note} = req.body;
 
   if (req.body) {
     const newNote = {
-      note,
-      note_id: uuidv4(),
+      title: req.body.title,
+      text: req.body.text,
+      id: uuidv4(),
     };
 
     readAndAppend(newNote, 'db/db.json');
@@ -36,11 +36,13 @@ apiRoutes.post("/notes", (req,res) =>{
 
  
 apiRoutes.delete('/notes/:id', (req, res) => {
-  const notesId = req.params.notes_id;
+  const notesId = req.params.id;
   readFromFile('db/db.json')
     .then((data) => JSON.parse(data))
     .then((json) => {
-      const result = json.filter((note) => note.notes_id !== notesId);
+      const result = json.filter((note) => 
+      
+      note.id !== notesId);
 
       writeToFile('db/db.json', result);
 
