@@ -13,7 +13,7 @@ app.use(express.json());
 // middleware for serving static files 
 app.use(express.static('public'));
 
-// ## TO DO - Link up routes 
+// - Link up routes 
 app.use('/api', apiRoutes);
 app.use('/', htmlRoutes);
 
